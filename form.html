@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+</head>
+
+<body>
+    <ul id="messages">Something</ul>
+
+    <div style="display: flex flex-flow:wrap">
+        <input id="enterprise1" style="width: 1000px" autocomplete="off" />
+        <button id="enterprise1-Btn">Enterprize 1</button>
+
+        <input id="enterprise2" style="width: 1000px" autocomplete="off" />
+        <button id="enterprise2-Btn">Enterprize 2</button>
+
+        <input id="enterprise3" style="width: 1000px" autocomplete="off" />
+        <button id="enterprise3-Btn">Enterprize 3</button>
+
+        <input id="enterprise4" style="width: 1000px" autocomplete="off" />
+        <button id="enterprise4-Btn">Enterprize 4</button>
+
+        <input id="enterprise5" style="width: 1000px" autocomplete="off" />
+        <button id="enterprise5-Btn">Enterprize 5</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io()
+
+            const clickEvent = function (enterprise) {
+                let valor = $(enterprise).val()
+                $("#messages").text(`foi ${valor}`)
+                socket.emit(enterprise, valor)
+            }
+
+            for (let index = 1; index <= 5; index++) {
+                $(`#enterprise${index}-Btn`).click(function () {
+                    clickEvent(`#enterprise${index}`)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+</head>
+
+<body>
+    <div class="item item1">
+        <h1>Enterprise 1</h1>
+        <p>R$ 0</p>
+    </div>
+    <div class="item item2">
+        <h1>Enterprise 2</h1>
+        <p>R$ 0</p>
+    </div>
+    <div class="item item3">
+        <h1>Enterprise 3</h1>
+        <p>R$ 0</p>
+    </div>
+    <div class="item item4">
+        <h1>Enterprise 4</h1>
+        <p>R$ 0</p>
+    </div>
+    <div class="item item5">
+        <h1>Enterprise 5</h1>
+        <p>R$ 0</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var socket = io()
+
+            for (let index = 1; index <= 5; index++) {
+                socket.on(`#enterprise${index}`, function (msg) {
+                    console.log('foi')
+                    $(`.item${index} p`).text(`R$ ${msg}`)
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
